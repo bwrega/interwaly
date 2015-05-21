@@ -16,7 +16,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+Przerwa"
-                    android:id="@+id/addPrzerwa" android:layout_weight="1"/>
+                    android:id="@+id/addPrzerwa" android:layout_weight="1"
+                    android:onClick="onAddPrzerwa"/>
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
