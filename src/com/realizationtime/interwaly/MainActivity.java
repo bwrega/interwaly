@@ -1,17 +1,21 @@
 package com.realizationtime.interwaly;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 public class MainActivity extends Activity {
+
     /**
      * Called when the activity is first created.
      */
@@ -23,16 +27,48 @@ public class MainActivity extends Activity {
 
     List<Interwal> interwaly = new ArrayList<>();
 
+    private int domyslnyCzasBiegu = 15;
     public void onAddBiegaj(View view) {
-        Bieg bieg = new Bieg(15);
-        interwaly.add(bieg);
-        redrawIntervals();
+        EditText czasEditor = new EditText(this);
+        czasEditor.setText(""+ domyslnyCzasBiegu);
+        czasEditor.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        new AlertDialog.Builder(this)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int czas = parseInt(czasEditor.getText().toString());
+                        domyslnyCzasBiegu = czas;
+                        Bieg bieg = new Bieg(czas);
+                        interwaly.add(bieg);
+                        redrawIntervals();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .setView(czasEditor)
+                .setMessage(getString(R.string.input_run_time))
+                .show();
     }
 
+    private int domyslnyCzasPrzerwy = 45;
     public void onAddPrzerwa(View view) {
-        Przerwa przerwa = new Przerwa(45);
-        interwaly.add(przerwa);
-        redrawIntervals();
+        EditText czasEditor = new EditText(this);
+        czasEditor.setText(""+ domyslnyCzasPrzerwy);
+        czasEditor.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        new AlertDialog.Builder(this)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int czas = parseInt(czasEditor.getText().toString());
+                        domyslnyCzasPrzerwy = czas;
+                        Przerwa przerwa = new Przerwa(czas);
+                        interwaly.add(przerwa);
+                        redrawIntervals();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .setView(czasEditor)
+                .setMessage(getString(R.string.input_break_time))
+                .show();
     }
 
     private void redrawIntervals() {

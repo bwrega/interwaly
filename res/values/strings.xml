@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">interwaly</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Anuluj</string>
+    <string name="input_break_time">Podaj czas trwania przerwy</string>
+    <string name="input_run_time">Podaj czas trwania biegu</string>
 </resources>
