@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
     }
 
-    List<Interwal> interwaly = new ArrayList<>();
+    ListOfInterwaly interwaly = new ListOfInterwaly();
 
     private int domyslnyCzasBiegu = 15;
     public void onAddBiegaj(View view) {
@@ -74,9 +74,10 @@ public class MainActivity extends Activity {
     private void redrawIntervals() {
         LinearLayout podInterwaly = (LinearLayout) findViewById(R.id.podInterwaly);
         podInterwaly.removeAllViews();
-        for (Interwal interwal:interwaly) {
+        for (Interwal interwal:interwaly.getList()) {
             Button nextButton = new Button(getApplicationContext());
             nextButton.setText(""+interwal.getCzas());
+            nextButton.setOnClickListener(createInterwalButtonListener(interwal));
             if (interwal instanceof Bieg) {
                 nextButton.setBackgroundColor(Color.RED);
             } else {
@@ -86,4 +87,34 @@ public class MainActivity extends Activity {
             podInterwaly.addView(nextButton);
         }
     }
+
+    private View.OnClickListener createInterwalButtonListener(Interwal interwal) {
+        EditText czasEditor = new EditText(this);
+        czasEditor.setText("" + interwal.getCzas());
+        czasEditor.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                interwaly.replace(interwal, parseInt(czasEditor.getText().toString()));
+                                redrawIntervals();
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null)
+                        .setNeutralButton(getString(R.string.Remove), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                interwaly.remove(interwal);
+                                redrawIntervals();
+                            }
+                        })
+                        .setView(czasEditor)
+                        .show();
+            }
+        };
+    }
+
 }

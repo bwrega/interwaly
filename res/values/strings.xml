@@ -5,4 +5,5 @@
     <string name="cancel">Anuluj</string>
     <string name="input_break_time">Podaj czas trwania przerwy</string>
     <string name="input_run_time">Podaj czas trwania biegu</string>
+    <string name="Remove">Usuń</string>
 </resources>
