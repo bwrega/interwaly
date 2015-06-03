@@ -6,4 +6,7 @@
     <string name="input_break_time">Podaj czas trwania przerwy</string>
     <string name="input_run_time">Podaj czas trwania biegu</string>
     <string name="Remove">Usuń</string>
+    <string name="Break">+Przerwa</string>
+    <string name="Run">+Bieg</string>
+    <string name="Start">Start!</string>
 </resources>

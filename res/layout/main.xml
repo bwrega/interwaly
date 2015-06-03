@@ -15,19 +15,19 @@
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+Przerwa"
+                    android:text="@string/Break"
                     android:id="@+id/addPrzerwa" android:layout_weight="1"
                     android:onClick="onAddPrzerwa"/>
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+Bieg"
+                    android:text="@string/Run"
                     android:id="@+id/addBieg" android:layout_weight="1" android:onClick="onAddBiegaj"/>
         </LinearLayout>
         <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Run!"
+                android:text="@string/Start"
                 android:id="@+id/startStop" android:layout_gravity="center_horizontal"/>
         <LinearLayout
                 android:orientation="vertical"
