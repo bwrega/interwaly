@@ -23,9 +23,11 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        interwaly = ListOfInterwaly.getFromPersistence(this);
+        redrawIntervals();
     }
 
-    ListOfInterwaly interwaly = new ListOfInterwaly();
+    ListOfInterwaly interwaly;
 
     private int domyslnyCzasBiegu = 15;
     public void onAddBiegaj(View view) {

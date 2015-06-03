@@ -1,17 +1,53 @@
 package com.realizationtime.interwaly;
 
+import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListOfInterwaly {
-    private List<Interwal> list = new ArrayList<>();
+import static com.realizationtime.interwaly.Bieg.BIEG_STARTING_LETTER;
+import static java.lang.Integer.parseInt;
 
-    public void add(Interwal interwal) {
-        list.add(interwal);
+public class ListOfInterwaly {
+    private static final String INTERWALY_KEY = "interwaly";
+
+    public static ListOfInterwaly getFromPersistence(Activity activity){
+        ListOfInterwaly ret = new ListOfInterwaly(activity);
+        String interval_pers = activity.getPreferences(Context.MODE_PRIVATE).getString(INTERWALY_KEY, "");
+        if ("".equals(interval_pers)){
+            return ret;
+        }
+        String[] interwaly = interval_pers.split(",");
+        for (String next : interwaly) {
+            try {
+                if (next.startsWith(BIEG_STARTING_LETTER)){
+                    ret.list.add(new Bieg( parseInt(next.substring(1)) ));
+                } else {
+                    ret.list.add(new Przerwa( parseInt(next.substring(1)) ));
+                }
+            } catch (Exception e) {
+                Log.e(activity.getLocalClassName(), "Error reading interval: "+next, e);
+            }
+        }
+        return ret;
     }
+
+    private ListOfInterwaly (Activity activity) {
+        this.activity = activity;
+    }
+    private Activity activity;
+    private List<Interwal> list = new ArrayList<>();
 
     public List<Interwal> getList () {
         return list;
+    }
+
+    public void add(Interwal interwal) {
+        list.add(interwal);
+
+        persist();
     }
 
     public void replace(Interwal interwal, int czas) {
@@ -19,6 +55,31 @@ public class ListOfInterwaly {
         int indexStarego = list.indexOf(interwal);
         list.remove(indexStarego);
         list.add(indexStarego, nowyInterwal);
+
+        persist();
+    }
+
+    public void remove(Interwal interwal) {
+        list.remove(interwal);
+
+        persist();
+    }
+
+    private void persist(){
+        activity.getPreferences(Context.MODE_PRIVATE).edit()
+                .putString(INTERWALY_KEY, toString()).commit();
+    }
+
+    @Override
+    public String toString() {
+        String ret = "";
+        for (Interwal interwal : list) {
+            ret+=interwal.toString()+",";
+        }
+        if (ret.length()>0) {
+            ret = ret.substring(0, ret.length()-1);
+        }
+        return ret;
     }
 
     private static Interwal replaceTime(Interwal interwal, int czas) {
@@ -27,9 +88,5 @@ public class ListOfInterwaly {
         } else {
             return new Bieg(czas);
         }
-    }
-
-    public void remove(Interwal interwal) {
-        list.remove(interwal);
     }
 }
