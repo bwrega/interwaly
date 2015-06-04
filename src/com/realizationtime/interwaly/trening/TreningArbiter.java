@@ -15,10 +15,6 @@ public class TreningArbiter {
         buildTabliceKoncow();
     }
 
-    private long mineloOdStartu() {
-        return System.currentTimeMillis() - treningStartMS;
-    }
-
     private long[] tablicaKoncow;
     private void buildTabliceKoncow() {
         tablicaKoncow = new long[interwaly.getList().size()];
@@ -57,7 +53,7 @@ public class TreningArbiter {
             return (int)((System.currentTimeMillis() - treningStartMS )*100L/pierwszy.getCzasMS());
         }
         int indexOfCurrent = interwaly.getList().indexOf(current);
-        return (int)((tablicaKoncow[indexOfCurrent] - tablicaKoncow[indexOfCurrent-1])*100L / current.getCzasMS());
+        return (int)((System.currentTimeMillis() - tablicaKoncow[indexOfCurrent-1])*100L / current.getCzasMS());
     }
 
     public int getTotalPercentage(){
