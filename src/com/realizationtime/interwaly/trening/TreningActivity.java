@@ -1,16 +1,16 @@
 package com.realizationtime.interwaly.trening;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import com.realizationtime.interwaly.ListOfInterwaly;
 import com.realizationtime.interwaly.R;
-
-import java.io.IOException;
 
 import static com.realizationtime.interwaly.ListOfInterwaly.getFromString;
 
@@ -30,6 +30,7 @@ public class TreningActivity extends Activity {
                 if (!mediaPlayer.isPlaying()) {
                     mediaPlayer.start();
                 }
+                ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(75);
             } else {
                 findViewById(R.id.mainLayout).setBackgroundColor(Color.GREEN);
                 if (mediaPlayer.isPlaying()) {
