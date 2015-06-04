@@ -14,12 +14,16 @@ public class ListOfInterwaly {
     private static final String INTERWALY_KEY = "interwaly";
 
     public static ListOfInterwaly getFromPersistence(Activity activity){
-        ListOfInterwaly ret = new ListOfInterwaly(activity);
         String interval_pers = activity.getPreferences(Context.MODE_PRIVATE).getString(INTERWALY_KEY, "");
-        if ("".equals(interval_pers)){
+        return getFromString(activity, interval_pers);
+    }
+
+    public static ListOfInterwaly getFromString(Activity activity, String intervalString) {
+        ListOfInterwaly ret = new ListOfInterwaly(activity);
+        if ("".equals(intervalString)){
             return ret;
         }
-        String[] interwaly = interval_pers.split(",");
+        String[] interwaly = intervalString.split(",");
         for (String next : interwaly) {
             try {
                 if (next.startsWith(BIEG_STARTING_LETTER)){
@@ -28,7 +32,7 @@ public class ListOfInterwaly {
                     ret.list.add(new Przerwa( parseInt(next.substring(1)) ));
                 }
             } catch (Exception e) {
-                Log.e(activity.getLocalClassName(), "Error reading interval: "+next, e);
+                Log.e(activity.getLocalClassName(), "Error reading interval: " + next, e);
             }
         }
         return ret;

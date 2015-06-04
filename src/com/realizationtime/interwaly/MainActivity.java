@@ -3,14 +3,12 @@ package com.realizationtime.interwaly;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
@@ -28,6 +26,12 @@ public class MainActivity extends Activity {
     }
 
     ListOfInterwaly interwaly;
+
+    public void onStartClicked(View view) {
+        Intent startujBieg = new Intent(this, BiegActivity.class);
+        startujBieg.putExtra(BiegActivity.INTERWALY_PASS_KEY, this.interwaly.toString());
+        startActivity(startujBieg);
+    }
 
     private int domyslnyCzasBiegu = 15;
     public void onAddBiegaj(View view) {
