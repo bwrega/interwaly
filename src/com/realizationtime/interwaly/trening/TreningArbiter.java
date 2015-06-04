@@ -48,12 +48,21 @@ public class TreningArbiter {
         if (current == koniec) {
             return 100;
         }
+        return (int) (getCurrentTimeMS() * 100 / current.getCzasMS());
+    }
+
+    public int getCurrentTimeMS() {
+        Interwal current = getCurrentInterval();
+        if (current == koniec) {
+            return (int) (tablicaKoncow.length == 0 ? System.currentTimeMillis() - treningStartMS
+                                : System.currentTimeMillis() - tablicaKoncow[tablicaKoncow.length-1]);
+        }
         Interwal pierwszy = interwaly.getList().get(0);
         if (current == pierwszy) {
-            return (int)((System.currentTimeMillis() - treningStartMS )*100L/pierwszy.getCzasMS());
+            return (int) (System.currentTimeMillis() - treningStartMS);
         }
         int indexOfCurrent = interwaly.getList().indexOf(current);
-        return (int)((System.currentTimeMillis() - tablicaKoncow[indexOfCurrent-1])*100L / current.getCzasMS());
+        return (int) (System.currentTimeMillis() - tablicaKoncow[indexOfCurrent-1]);
     }
 
     public int getTotalPercentage(){
@@ -62,5 +71,9 @@ public class TreningArbiter {
             ret = 100;
         }
         return ret;
+    }
+
+    public int getTotalTimeMS() {
+        return (int) (System.currentTimeMillis() - treningStartMS);
     }
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">interwaly</string>
+    <string name="app_name">Interwały</string>
     <string name="ok">OK</string>
     <string name="cancel">Anuluj</string>
     <string name="input_break_time">Podaj czas trwania przerwy</string>
     <string name="input_run_time">Podaj czas trwania sprintu</string>
     <string name="Remove">Usuń</string>
     <string name="Break">+Przerwa</string>
-    <string name="Run">+Bieg</string>
+    <string name="Run">+Sprint</string>
     <string name="Start">Start!</string>
 </resources>

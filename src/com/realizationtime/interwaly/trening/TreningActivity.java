@@ -9,10 +9,13 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import com.realizationtime.interwaly.ListOfInterwaly;
 import com.realizationtime.interwaly.R;
 
 import static com.realizationtime.interwaly.ListOfInterwaly.getFromString;
+import static com.realizationtime.interwaly.trening.TimeFormatter.formatTenthsOfSecond;
+import static com.realizationtime.interwaly.trening.TimeFormatter.formatWholeSeconds;
 
 
 public class TreningActivity extends Activity {
@@ -40,6 +43,13 @@ public class TreningActivity extends Activity {
                     mediaPlayer.pause();
                 }
             }
+            updateCounterFields();
+        }
+
+        private void updateCounterFields() {
+            runningCurrent.setText(formatTenthsOfSecond(arbiter.getCurrentTimeMS()));
+            runningTotal.setText(formatWholeSeconds((int) arbiter.getCurrentInterval().getCzasMS()));
+            totalCurrent.setText(formatTenthsOfSecond(arbiter.getTotalTimeMS()));
         }
     };
     private final Runnable onTreningDone = new Runnable() {
@@ -64,6 +74,9 @@ public class TreningActivity extends Activity {
     });
     private TreningArbiter arbiter;
     private MediaPlayer mediaPlayer;
+    private TextView runningCurrent;
+    private TextView runningTotal;
+    private TextView totalCurrent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,7 +88,16 @@ public class TreningActivity extends Activity {
         totalProgress = (ProgressBar) findViewById(R.id.totalProgress);
         mediaPlayer = MediaPlayer.create(this, R.raw.beep);
         mediaPlayer.setLooping(true);
+        initCounterFields();
         treningThread.start();
+    }
+
+    private void initCounterFields() {
+        ((TextView) findViewById(R.id.totalTotal))
+                .setText(formatWholeSeconds((int) interwaly.getTotalTimeInMS()));
+        runningCurrent = (TextView) findViewById(R.id.runningCurrent);
+        runningTotal = (TextView) findViewById(R.id.runningTotal);
+        totalCurrent = (TextView) findViewById(R.id.totalCurrent);
     }
 
     public void onStopClicked(View view) {
