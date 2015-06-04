@@ -1,4 +1,4 @@
-package com.realizationtime.interwaly;
+package com.realizationtime.interwaly.interwaly;
 
 public class Przerwa extends Interwal {
     public static final String PRZERWA_STARTING_LETTER = "P";

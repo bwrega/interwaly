@@ -1,4 +1,4 @@
-package com.realizationtime.interwaly;
+package com.realizationtime.interwaly.interwaly;
 
 public abstract class Interwal {
 

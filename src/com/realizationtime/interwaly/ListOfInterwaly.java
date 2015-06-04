@@ -3,11 +3,14 @@ package com.realizationtime.interwaly;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import com.realizationtime.interwaly.interwaly.Interwal;
+import com.realizationtime.interwaly.interwaly.Przerwa;
+import com.realizationtime.interwaly.interwaly.Sprint;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.realizationtime.interwaly.Sprint.SPRINT_STARTING_LETTER;
+import static com.realizationtime.interwaly.interwaly.Sprint.SPRINT_STARTING_LETTER;
 import static java.lang.Integer.parseInt;
 
 public class ListOfInterwaly {

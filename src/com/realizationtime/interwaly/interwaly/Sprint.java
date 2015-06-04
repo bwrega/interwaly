@@ -1,4 +1,4 @@
-package com.realizationtime.interwaly;
+package com.realizationtime.interwaly.interwaly;
 
 public class Sprint extends Interwal {
     public static final String SPRINT_STARTING_LETTER = "B";

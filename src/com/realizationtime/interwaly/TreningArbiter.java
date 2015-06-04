@@ -1,5 +1,9 @@
 package com.realizationtime.interwaly;
 
+import com.realizationtime.interwaly.interwaly.Interwal;
+import com.realizationtime.interwaly.interwaly.Koniec;
+import com.realizationtime.interwaly.interwaly.Sprint;
+
 public class TreningArbiter {
     private final ListOfInterwaly interwaly;
     private final Interwal koniec = new Koniec();

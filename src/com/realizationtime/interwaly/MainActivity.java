@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.*;
+import com.realizationtime.interwaly.interwaly.Interwal;
+import com.realizationtime.interwaly.interwaly.Przerwa;
+import com.realizationtime.interwaly.interwaly.Sprint;
 
 import static java.lang.Integer.parseInt;
 
