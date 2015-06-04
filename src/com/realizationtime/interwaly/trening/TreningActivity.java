@@ -2,12 +2,15 @@ package com.realizationtime.interwaly.trening;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import com.realizationtime.interwaly.ListOfInterwaly;
 import com.realizationtime.interwaly.R;
+
+import java.io.IOException;
 
 import static com.realizationtime.interwaly.ListOfInterwaly.getFromString;
 
@@ -24,8 +27,14 @@ public class TreningActivity extends Activity {
             totalProgress.setProgress(arbiter.getTotalPercentage());
             if (arbiter.isCurrentSprint()){
                 findViewById(R.id.mainLayout).setBackgroundColor(Color.RED);
+                if (!mediaPlayer.isPlaying()) {
+                    mediaPlayer.start();
+                }
             } else {
                 findViewById(R.id.mainLayout).setBackgroundColor(Color.GREEN);
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.pause();
+                }
             }
         }
     };
@@ -50,6 +59,7 @@ public class TreningActivity extends Activity {
         }
     });
     private TreningArbiter arbiter;
+    private MediaPlayer mediaPlayer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +69,8 @@ public class TreningActivity extends Activity {
         arbiter = new TreningArbiter(interwaly);
         currentProgress = (ProgressBar) findViewById(R.id.currentProgress);
         totalProgress = (ProgressBar) findViewById(R.id.totalProgress);
+        mediaPlayer = MediaPlayer.create(this, R.raw.beep);
+        mediaPlayer.setLooping(true);
         treningThread.start();
     }
 
@@ -69,5 +81,11 @@ public class TreningActivity extends Activity {
             Log.i(getLocalClassName(), "exception while interrupting thread", ex);
         }
         finish();
+    }
+
+    @Override
+    public void finish() {
+        mediaPlayer.release();
+        super.finish();
     }
 }
