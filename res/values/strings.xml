@@ -4,7 +4,7 @@
     <string name="ok">OK</string>
     <string name="cancel">Anuluj</string>
     <string name="input_break_time">Podaj czas trwania przerwy</string>
-    <string name="input_run_time">Podaj czas trwania biegu</string>
+    <string name="input_run_time">Podaj czas trwania sprintu</string>
     <string name="Remove">Usuń</string>
     <string name="Break">+Przerwa</string>
     <string name="Run">+Bieg</string>

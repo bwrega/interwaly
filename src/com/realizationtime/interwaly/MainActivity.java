@@ -33,19 +33,19 @@ public class MainActivity extends Activity {
         startActivity(startujBieg);
     }
 
-    private int domyslnyCzasBiegu = 15;
+    private int domyslnyCzasSprintu = 15;
     public void onAddBiegaj(View view) {
         EditText czasEditor = new EditText(this);
-        czasEditor.setText(""+ domyslnyCzasBiegu);
+        czasEditor.setText(""+ domyslnyCzasSprintu);
         czasEditor.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
         new AlertDialog.Builder(this)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         int czas = parseInt(czasEditor.getText().toString());
-                        domyslnyCzasBiegu = czas;
-                        Bieg bieg = new Bieg(czas);
-                        interwaly.add(bieg);
+                        domyslnyCzasSprintu = czas;
+                        Sprint sprint = new Sprint(czas);
+                        interwaly.add(sprint);
                         redrawIntervals();
                     }
                 })
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
             Button nextButton = new Button(getApplicationContext());
             nextButton.setText(""+interwal.getCzas());
             nextButton.setOnClickListener(createInterwalButtonListener(interwal));
-            if (interwal instanceof Bieg) {
+            if (interwal instanceof Sprint) {
                 nextButton.setBackgroundColor(Color.RED);
             } else {
                 //Przerwa

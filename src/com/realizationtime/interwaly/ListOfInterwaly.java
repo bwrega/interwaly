@@ -7,7 +7,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.realizationtime.interwaly.Bieg.BIEG_STARTING_LETTER;
+import static com.realizationtime.interwaly.Sprint.SPRINT_STARTING_LETTER;
 import static java.lang.Integer.parseInt;
 
 public class ListOfInterwaly {
@@ -26,8 +26,8 @@ public class ListOfInterwaly {
         String[] interwaly = intervalString.split(",");
         for (String next : interwaly) {
             try {
-                if (next.startsWith(BIEG_STARTING_LETTER)){
-                    ret.list.add(new Bieg( parseInt(next.substring(1)) ));
+                if (next.startsWith(SPRINT_STARTING_LETTER)){
+                    ret.list.add(new Sprint( parseInt(next.substring(1)) ));
                 } else {
                     ret.list.add(new Przerwa( parseInt(next.substring(1)) ));
                 }
@@ -90,7 +90,7 @@ public class ListOfInterwaly {
         if (interwal instanceof Przerwa) {
             return new Przerwa(czas);
         } else {
-            return new Bieg(czas);
+            return new Sprint(czas);
         }
     }
 }
