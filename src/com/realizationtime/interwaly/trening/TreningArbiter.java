@@ -1,5 +1,6 @@
-package com.realizationtime.interwaly;
+package com.realizationtime.interwaly.trening;
 
+import com.realizationtime.interwaly.ListOfInterwaly;
 import com.realizationtime.interwaly.interwaly.Interwal;
 import com.realizationtime.interwaly.interwaly.Koniec;
 import com.realizationtime.interwaly.interwaly.Sprint;

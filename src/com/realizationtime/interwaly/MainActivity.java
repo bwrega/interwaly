@@ -12,6 +12,7 @@ import android.widget.*;
 import com.realizationtime.interwaly.interwaly.Interwal;
 import com.realizationtime.interwaly.interwaly.Przerwa;
 import com.realizationtime.interwaly.interwaly.Sprint;
+import com.realizationtime.interwaly.trening.TreningActivity;
 
 import static java.lang.Integer.parseInt;
 
@@ -31,8 +32,8 @@ public class MainActivity extends Activity {
     ListOfInterwaly interwaly;
 
     public void onStartClicked(View view) {
-        Intent startujBieg = new Intent(this, BiegActivity.class);
-        startujBieg.putExtra(BiegActivity.INTERWALY_PASS_KEY, this.interwaly.toString());
+        Intent startujBieg = new Intent(this, TreningActivity.class);
+        startujBieg.putExtra(TreningActivity.INTERWALY_PASS_KEY, this.interwaly.toString());
         startActivity(startujBieg);
     }
 
