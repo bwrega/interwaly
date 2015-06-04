@@ -23,6 +23,9 @@ public class TreningActivity extends Activity {
     private Runnable updateUITask = new Runnable() {
         @Override
         public void run() {
+            if (!treningThread.isAlive()){
+                return;
+            }
             currentProgress.setProgress(arbiter.getCurrentPercentage());
             totalProgress.setProgress(arbiter.getTotalPercentage());
             if (arbiter.isCurrentSprint()){
