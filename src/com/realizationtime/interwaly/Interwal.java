@@ -11,4 +11,8 @@ public abstract class Interwal {
     public int getCzas() {
         return czas;
     }
+
+    public long getCzasMS() {
+        return getCzas() * 1000L;
+    }
 }

@@ -69,6 +69,14 @@ public class ListOfInterwaly {
         persist();
     }
 
+    public long getTotalTimeInMS(){
+        long sum = 0;
+        for (Interwal n : list) {
+            sum += n.getCzas()*1000L;
+        }
+        return sum;
+    }
+
     private void persist(){
         activity.getPreferences(Context.MODE_PRIVATE).edit()
                 .putString(INTERWALY_KEY, toString()).commit();
