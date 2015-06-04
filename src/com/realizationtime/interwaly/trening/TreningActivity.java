@@ -1,6 +1,7 @@
 package com.realizationtime.interwaly.trening;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,11 @@ public class TreningActivity extends Activity {
         public void run() {
             currentProgress.setProgress(arbiter.getCurrentPercentage());
             totalProgress.setProgress(arbiter.getTotalPercentage());
+            if (arbiter.isCurrentSprint()){
+                findViewById(R.id.mainLayout).setBackgroundColor(Color.RED);
+            } else {
+                findViewById(R.id.mainLayout).setBackgroundColor(Color.GREEN);
+            }
         }
     };
     private final Runnable onTreningDone = new Runnable() {
@@ -29,7 +35,7 @@ public class TreningActivity extends Activity {
             finish();
         }
     };
-    
+
     private Thread treningThread = new Thread(new Runnable() {
         @Override
         public void run() {
